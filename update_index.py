@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+"""
+update_index.py
+Rewrites index.html with all change-log edits applied.
+
+USAGE
+-----
+1. Save this file in your repo folder (same folder as index.html).
+2. In a terminal in that folder, run:    python update_index.py
+3. Commit the modified index.html in GitHub Desktop and push.
+
+Tested with Python 3.x — no third-party libraries required.
+"""
+from pathlib import Path
+
+TARGET_FILENAME = "index.html"
+
+HTML = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -297,4 +313,12 @@
     </div>
   </footer>
 </body>
-</html>
+</html>"""
+
+def main():
+    out_path = Path(__file__).resolve().parent / TARGET_FILENAME
+    out_path.write_text(HTML, encoding="utf-8", newline="\n")
+    print(f"[OK] Wrote {out_path} ({len(HTML):,} bytes)")
+
+if __name__ == "__main__":
+    main()
